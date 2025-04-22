@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: truman
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - app-network
+
+  instrument-service:
+    build: ./instrument-service
+    container_name: instrument-service
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+      - zipkin
+    networks:
+      - app-network
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "8082:8080"
+    depends_on:
+      - mysql
+      - zipkin
+    networks:
+      - app-network
+
+  file-service:
+    build: ./file-service
+    container_name: file-service
+    ports:
+      - "8084:8080"
+    depends_on:
+      - zipkin
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
