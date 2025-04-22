@@ -13,7 +13,13 @@ if (!process.env.ANTHROPIC_API_KEY) {
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 app.use(express.static('.'));
+
+// Serve index.html for the root route
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
 // Initialize Anthropic client
 const anthropic = new Anthropic({
@@ -73,7 +79,7 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
