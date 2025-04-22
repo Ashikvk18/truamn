@@ -22,9 +22,7 @@ public class User {
     private Long id;
 
     private String fullName;
-    @Column(unique = true, nullable = false)
     private String username;
-
     @Column(unique = true, nullable = false)
     @Email(message="Invalid email format")
     private String email;
@@ -36,8 +34,6 @@ public class User {
     private String role;
     private String dp;
 
-    private String about;
-
     private LocalDateTime createdAt;
 
 
@@ -46,7 +42,6 @@ public class User {
     {
         this.createdAt = LocalDateTime.now();
         this.dp = null;
-        this.about = null;
     }
 
 
