@@ -2,7 +2,7 @@
 
 This project follows a **microservices-based architecture** designed for scalability, modularity, and asynchronous communication between services.
 
-![Architecture Diagram](path-to-your-diagram.png)
+![Architecture Diagram](diagram)
 
 ---
 
