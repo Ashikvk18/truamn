@@ -3,7 +3,6 @@ services:
   - type: web
     name: truman-rec-web
     env: node
-    runtime: node
     buildCommand: npm install
     startCommand: node server.js
     envVars:
@@ -15,18 +14,17 @@ services:
         fromService:
           name: truman-rec-workout
           type: web
-          property: url
+          property: hostport
       - key: NUTRITION_SERVER
         fromService:
           name: truman-rec-nutrition
           type: web
-          property: url
+          property: hostport
 
   # Workout Generator Service
   - type: web
     name: truman-rec-workout
     env: python
-    runtime: python3
     buildCommand: |
       python -m pip install --upgrade pip
       pip install -r requirements.txt
@@ -36,14 +34,11 @@ services:
         value: production
       - key: PORT
         value: 10000
-      - key: PYTHON_VERSION
-        value: 3.11.0
 
   # Nutrition Generator Service
   - type: web
     name: truman-rec-nutrition
     env: python
-    runtime: python3
     buildCommand: |
       python -m pip install --upgrade pip
       pip install -r requirements.txt
@@ -53,5 +48,3 @@ services:
         value: production
       - key: PORT
         value: 10001
-      - key: PYTHON_VERSION
-        value: 3.11.0
