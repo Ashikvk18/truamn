@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Availability - Campus Recreation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .navbar {
+            background-color: #5b177f;
+            padding: 1rem;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #5b177f;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .equipment-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .equipment-item h5 {
+            color: #5b177f;
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        .equipment-description {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .status {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .available {
+            color: #28a745;
+        }
+        .unavailable {
+            color: #dc3545;
+        }
+        .location {
+            color: #666;
+            font-style: italic;
+        }
+        footer {
+            background-color: #5b177f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="http://127.0.0.1:5001">Nutrition Generator</a>
+        <a href="equipment.html">Equipment Availability</a>
+    </nav>
+
+    <div class="container">
+        <h1>Equipment Availability</h1>
+        <p class="subtitle">Check real-time availability of our fitness equipment</p>
+
+        <div class="equipment-item">
+            <h5>Hammer Strength Pec Deck Fly</h5>
+            <p class="equipment-description">Professional plate-loaded pec deck fly machine for targeted chest development.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Weight Room - First Floor</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Life Fitness Lat Pulldown</h5>
+            <p class="equipment-description">High-quality lat pulldown machine perfect for back development.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Weight Room - First Floor</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Life Fitness Treadmill</h5>
+            <p class="equipment-description">Modern treadmill with built-in workout programs and heart rate monitoring.</p>
+            <p class="status unavailable">Under Maintenance</p>
+            <p class="location">Location: Cardio Area - Second Floor</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Dumbbell Station</h5>
+            <p class="equipment-description">Complete set of dumbbells ranging from 5 to 100 pounds with mirrors.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Free Weights Area - First Floor</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Hammer Strength Leg Press</h5>
+            <p class="equipment-description">Heavy-duty leg press for lower body development.</p>
+            <p class="status unavailable">Under Maintenance</p>
+            <p class="location">Location: Weight Room</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Life Fitness 95T Treadmill</h5>
+            <p class="equipment-description">Premium treadmill with HD display and workout tracking.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Cardio Area</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Life Fitness FlexStrider</h5>
+            <p class="equipment-description">Variable-stride elliptical for customized cardio workouts.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Cardio Area</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Life Fitness Recumbent Bike</h5>
+            <p class="equipment-description">Comfortable recumbent bike with digital console.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Cardio Area</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Hammer Strength Bench</h5>
+            <p class="equipment-description">Adjustable bench for free weight exercises.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Free Weight Area</p>
+        </div>
+
+        <div class="equipment-item">
+            <h5>Dumbbell Set with Rack</h5>
+            <p class="equipment-description">Complete set of dumbbells from 5 to 100 lbs.</p>
+            <p class="status available">Available</p>
+            <p class="location">Location: Free Weight Area</p>
+        </div>
+    </div>
+
+    <footer>
+        <a href="tel:6607854000">(660) 785-4000</a>
+        <a href="https://www.truman.edu/contact-us/">Contact Us</a>
+    </footer>
+</body>
+</html>
