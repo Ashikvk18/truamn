@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: truaman-gym
+    name: truamn
     env: node
     buildCommand: |
       npm install
