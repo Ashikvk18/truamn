@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Anthropic = require('@anthropic-ai/sdk');
+const { spawn } = require('child_process');
 const app = express();
 
 // Check for required environment variables
@@ -9,6 +10,18 @@ if (!process.env.ANTHROPIC_API_KEY) {
     console.error('Error: ANTHROPIC_API_KEY is not set in environment variables');
     process.exit(1);
 }
+
+// Start Flask applications
+const workoutApp = spawn('python', ['app.py']);
+const nutritionApp = spawn('python', ['nutrition_app.py']);
+
+workoutApp.stdout.on('data', (data) => {
+    console.log(`Workout App: ${data}`);
+});
+
+nutritionApp.stdout.on('data', (data) => {
+    console.log(`Nutrition App: ${data}`);
+});
 
 // Middleware
 app.use(cors());

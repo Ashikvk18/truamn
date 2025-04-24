@@ -1,14 +1,12 @@
 services:
   - type: web
     name: truman-rec-combined
-    env: python
+    env: node
     buildCommand: |
+      npm install
       python -m pip install --upgrade pip
       pip install -r requirements.txt
-      npm install
     startCommand: |
-      python app.py & \
-      python nutrition_app.py & \
       node server.js
     envVars:
       - key: NODE_ENV
@@ -17,3 +15,4 @@ services:
         value: production
       - key: PORT
         value: 3000
+    staticPublishPath: ./
