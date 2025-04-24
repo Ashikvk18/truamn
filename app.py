@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
+@app.route('/workout')
 def workout():
     return render_template('workout.html')
 

@@ -5,7 +5,7 @@ from nutrition_generator import calculate_tdee, generate_meal_plan
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
+@app.route('/nutrition')
 def nutrition():
     return render_template('nutrition.html')
 
