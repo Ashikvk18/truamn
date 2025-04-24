@@ -1,0 +1,46 @@
+services:
+  # Main Web Server
+  - type: web
+    name: truman-rec-web
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: WORKOUT_SERVER
+        fromService:
+          name: truman-rec-workout
+          type: web
+          property: url
+      - key: NUTRITION_SERVER
+        fromService:
+          name: truman-rec-nutrition
+          type: web
+          property: url
+
+  # Workout Generator Service
+  - type: web
+    name: truman-rec-workout
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5000
+
+  # Nutrition Generator Service
+  - type: web
+    name: truman-rec-nutrition
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python nutrition_app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5001
