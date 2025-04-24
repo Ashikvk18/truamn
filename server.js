@@ -28,22 +28,56 @@ nutritionApp.stdout.on('data', (data) => {
 app.use(cors());
 app.use(express.json());
 
-// Serve static files
-app.use(express.static(__dirname));
-app.use('/css', express.static(path.join(__dirname, 'css')));
-app.use('/js', express.static(path.join(__dirname, 'js')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/fonts', express.static(path.join(__dirname, 'fonts')));
+// Create public directory if it doesn't exist
+const fs = require('fs');
+if (!fs.existsSync('public')) {
+    fs.mkdirSync('public');
+}
+
+// Copy static files to public directory
+const copyFiles = (src, dest) => {
+    if (fs.existsSync(src)) {
+        if (!fs.existsSync(dest)) {
+            fs.mkdirSync(dest, { recursive: true });
+        }
+        const files = fs.readdirSync(src);
+        files.forEach(file => {
+            const srcPath = path.join(src, file);
+            const destPath = path.join(dest, file);
+            if (fs.statSync(srcPath).isFile()) {
+                fs.copyFileSync(srcPath, destPath);
+            }
+        });
+    }
+};
+
+// Copy static assets
+copyFiles('css', path.join('public', 'css'));
+copyFiles('js', path.join('public', 'js'));
+copyFiles('images', path.join('public', 'images'));
+copyFiles('fonts', path.join('public', 'fonts'));
+
+// Copy HTML files
+fs.copyFileSync('index.html', path.join('public', 'index.html'));
+const htmlFiles = fs.readdirSync('.').filter(file => file.endsWith('.html'));
+htmlFiles.forEach(file => {
+    if (file !== 'index.html') {
+        fs.copyFileSync(file, path.join('public', file));
+    }
+});
+
+// Serve static files from public directory
+app.use(express.static('public'));
 
 // Serve index.html for the root route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Serve other HTML files
 app.get('/*.html', (req, res) => {
     const htmlFile = req.path.substring(1);
-    const filePath = path.join(__dirname, htmlFile);
+    const filePath = path.join(__dirname, 'public', htmlFile);
     res.sendFile(filePath, (err) => {
         if (err) {
             res.status(404).send('File not found');

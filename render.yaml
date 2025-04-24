@@ -12,4 +12,4 @@ services:
         value: production
       - key: PORT
         value: 3000
-    staticPublishPath: ./
+    staticPublishPath: ./public
