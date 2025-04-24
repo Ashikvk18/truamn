@@ -3,6 +3,7 @@ services:
   - type: web
     name: truman-rec-web
     env: node
+    runtime: node
     buildCommand: npm install
     startCommand: node server.js
     envVars:
@@ -25,22 +26,32 @@ services:
   - type: web
     name: truman-rec-workout
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    runtime: python3
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app
     envVars:
       - key: FLASK_ENV
         value: production
       - key: PORT
-        value: 5000
+        value: 10000
+      - key: PYTHON_VERSION
+        value: 3.11.0
 
   # Nutrition Generator Service
   - type: web
     name: truman-rec-nutrition
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python nutrition_app.py
+    runtime: python3
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: gunicorn nutrition_app:app
     envVars:
       - key: FLASK_ENV
         value: production
       - key: PORT
-        value: 5001
+        value: 10001
+      - key: PYTHON_VERSION
+        value: 3.11.0
