@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const Anthropic = require('@anthropic-ai/sdk');
 const { spawn } = require('child_process');
+const path = require('path');
 const app = express();
 
 // Check for required environment variables
@@ -42,7 +43,12 @@ app.get('/', (req, res) => {
 // Serve other HTML files
 app.get('/*.html', (req, res) => {
     const htmlFile = req.path.substring(1);
-    res.sendFile(path.join(__dirname, htmlFile));
+    const filePath = path.join(__dirname, htmlFile);
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            res.status(404).send('File not found');
+        }
+    });
 });
 
 // Initialize Anthropic client
