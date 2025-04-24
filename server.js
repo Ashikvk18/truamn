@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Anthropic = require('@anthropic-ai/sdk');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const path = require('path');
 const app = express();
 
 // Check for required environment variables
@@ -13,13 +15,37 @@ if (!process.env.ANTHROPIC_API_KEY) {
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
-app.use(express.static('.'));
 
-// Serve index.html for the root route
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
+// Proxy workout requests to workout server
+app.use('/workout', createProxyMiddleware({
+    target: process.env.WORKOUT_SERVER || 'http://localhost:5000',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/workout': ''
+    }
+}));
+
+// Proxy nutrition requests to nutrition server
+app.use('/nutrition', createProxyMiddleware({
+    target: process.env.NUTRITION_SERVER || 'http://localhost:5001',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/nutrition': ''
+    }
+}));
+
+// Serve static files with caching enabled
+const staticOptions = {
+    etag: true,
+    lastModified: true,
+    maxAge: '1h'
+};
+
+app.use('/css', express.static('css', staticOptions));
+app.use('/images', express.static('images', staticOptions));
+app.use('/js', express.static('js', staticOptions));
+app.use(express.static('public', staticOptions));
+app.use(express.static(path.join(__dirname)));
 
 // Initialize Anthropic client
 const anthropic = new Anthropic({
@@ -79,7 +105,12 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3001;
+// Handle all other routes by serving index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

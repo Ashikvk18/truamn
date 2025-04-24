@@ -7,8 +7,8 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # OpenRouter API configuration
-OPENROUTER_API_KEY = "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"
-ORG_ID = "org-123456"
+OPENROUTER_API_KEY = "sk-or-v1-a0e6862eff0b0e6978aef955d3ee3d8c1d9e8e4e2d1b9b0f9e8e4e2d1b9b0f9"
+ORG_ID = "org-truman-recreation"
 
 def call_openrouter(message, session_id):
     headers = {
@@ -30,7 +30,7 @@ def call_openrouter(message, session_id):
     Keep responses friendly, concise, and focused on campus recreation topics."""
 
     data = {
-        "model": "anthropic/claude-2",
+        "model": "openai/gpt-3.5-turbo",
         "messages": [
             {"role": "system", "content": system_message},
             {"role": "user", "content": message}

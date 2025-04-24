@@ -18,7 +18,7 @@
     <link rel="preload" href="https://recreation.truman.edu/wp-content/themes/truman2020-theme/bower_components/font-awesome/fonts/fontawesome-webfont.woff2" as="font" crossorigin="anonymous" />
     <link rel="preload" href="https://recreation.truman.edu/wp-content/themes/truman2020-theme/fonts/hurme-geometric-sans-bold.woff2" as="font" crossorigin="anonymous" />
 
-    <title>Campus Recreation</title>
+    <title>Home - Campus Recreation</title>
     <meta name='robots' content='max-image-preview:large' />
     <style>
         img:is([sizes="auto" i], [sizes^="auto," i]) {
@@ -536,8 +536,6 @@
             transition: all 0.2s ease;
         }
 
-        /* Extra specificity to deal with TwentyTwentyOne focus style */
-
         .widget .a-stats a.a-stats__link:focus {
             background: var(--akismet-color-mid-green);
             color: var(--akismet-color-white);
@@ -700,7 +698,8 @@
                             <li id=menu-item-137307 class="menu-item menu-item-type-custom menu-item-object-custom"><a href=https://www.truman.edu/truview-login/>TruView Login</a>
                             </li>
                             <li id=menu-item-137308 class="menu-item menu-item-type-custom menu-item-object-custom"><a href=https://trumanbulldogs.com>Athletics </a> </li>
-                            <li id=menu-item-137309 class="menu-item menu-item-type-custom menu-item-object-custom"><a href="nutrition.html">Nutrition Generator</a></li>
+                            <li id=menu-item-137309 class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://localhost:5001" class="btn btn-primary">Nutrition Generator</a></li>
+                            <li id=menu-item-137310 class="menu-item menu-item-type-custom menu-item-object-custom"><a href="equipment-availability.html">Equipment Availability</a></li>
                         </ul>
                     </div>
                     <div id="searchToggle" class="search-toggle" tabindex="0">
@@ -861,49 +860,49 @@
                                     <a class="btn btn-default btn-lg  " href="https://docs.google.com/forms/d/e/1FAIpQLSdvIFzhK71rZdnJVGKHy8O6r-K6333YRUsTMfViLJDJfMpZUA/viewform?usp=header" rel="" target="_self"><i class="glyphicon glyphicon-edit" style="color:#63d611;"></i> Glow in the Dark Pickleball Sign Up</a>
                                     <div class="row ">
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="https://recreation.truman.edu/general/" class="call-to-action " style="">
+                                            <a href="https://recreation.truman.edu/general/" class="call-to-action">
                                                 <div><span class="fa fa-info fa-5x"></span>
                                                     <h4>General Information</h4>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="https://recreation.truman.edu/fitness-home/" class="call-to-action " style="">
+                                            <a href="https://recreation.truman.edu/fitness-home/" class="call-to-action">
                                                 <div><span class="fa fa-heartbeat fa-5x"></span>
                                                     <h4>Fitness &amp; Wellness</h4>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="https://recreation.truman.edu/intramurals-home/" class="call-to-action " style="">
+                                            <a href="https://recreation.truman.edu/intramurals-home/" class="call-to-action">
                                                 <div><span class="fa fa fa-trophy fa-5x"></span>
                                                     <h4>Intramural &amp; Competitive Sports</h4>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="https://recreation.truman.edu/employment/" class="call-to-action " style="">
+                                            <a href="https://recreation.truman.edu/employment/" class="call-to-action">
                                                 <div><span class="fa fa-users fa-5x"></span>
                                                     <h4>Employment</h4>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="https://bike.truman.edu/" class="call-to-action " style="">
+                                            <a href="https://bike.truman.edu/" class="call-to-action">
                                                 <div><span class="fa fa fa-bicycle fa-5x"></span>
                                                     <h4>Bike Co-Op</h4>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="https://recreation.truman.edu/photos-video-home/" class="call-to-action " style="">
+                                            <a href="https://recreation.truman.edu/photos-video-home/" class="call-to-action">
                                                 <div><span class="fa fa fa-play-circle fa-5x"></span>
                                                     <h4>Exercise Videos</h4>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="https://recreation.truman.edu/recreation/comments-and-suggestions/" class="call-to-action " style="">
+                                            <a href="https://recreation.truman.edu/recreation/comments-and-suggestions/" class="call-to-action">
                                                 <div><span class="fa fa fa-list-alt fa-5x"></span>
                                                     <h4>Comments and Suggestions</h4>
                                                 </div>
@@ -917,17 +916,25 @@
                                                 </div>
                                             </a>
                                         </div>
+
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="http://127.0.0.1:5000" class="call-to-action " style="">
+                                            <a href="/nutrition" class="call-to-action">
+                                                <div><span class="fa fa-apple-alt fa-5x"></span>
+                                                    <h4>Nutrition Generator</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+                                            <a href="/workout" class="call-to-action">
                                                 <div><span class="fa fa-dumbbell fa-5x"></span>
                                                     <h4>Workout Generator</h4>
                                                 </div>
                                             </a>
-                                        </div> 
+                                        </div>
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
-                                            <a href="http://127.0.0.1:5001" class="call-to-action " style="">
-                                                <div><span class="fa fa-apple-alt fa-5x"></span>
-                                                    <h4>Nutrition Generator</h4>
+                                            <a href="equipment-availability.html" class="call-to-action">
+                                                <div><span class="fa fa-dumbbell fa-5x"></span>
+                                                    <h4>Equipment Availability</h4>
                                                 </div>
                                             </a>
                                         </div>                                                                               

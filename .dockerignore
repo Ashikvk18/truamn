@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.env
+.git
+.gitignore
+.vscode
+__pycache__
+*.pyc
+.pytest_cache
+Software Engineering project
+software engineering project 2
+temp-repo

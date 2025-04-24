@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Nutrition Plan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #5b177f;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .macro-box {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .macro-card {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .macro-card:hover {
+            transform: translateY(-5px);
+        }
+        .macro-icon {
+            font-size: 24px;
+            color: #5b177f;
+            margin-bottom: 10px;
+        }
+        .macro-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+        }
+        .macro-label {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .meal-card {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .meal-card:hover {
+            transform: translateY(-5px);
+        }
+        .meal-header {
+            background-color: #5b177f;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .meal-calories {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .meal-body {
+            padding: 20px;
+        }
+        .meal-suggestion {
+            color: #555;
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .meal-suggestion:before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: #5b177f;
+        }
+        .btn {
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #5b177f;
+            border-color: #5b177f;
+        }
+        .btn-primary:hover {
+            background-color: #4a1266;
+            border-color: #4a1266;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            margin-right: 15px;
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Truman Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5b177f;">
+        <div class="container-fluid">
+            <a href="file:///c:/Users/ASUS/OneDrive/Desktop/rec-website/index.html" class="navbar-brand">
+                <i class="fas fa-arrow-left me-2"></i>Back to Campus Recreation
+            </a>
+        </div>
+    </nav>
+
+    <div class="container animate__animated animate__fadeIn">
+        <h1>Your Personalized Nutrition Plan</h1>
+        
+        <div class="macro-box animate__animated animate__fadeInUp animate__delay-1s">
+            <h2 class="h4 mb-4">Daily Nutritional Targets</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="macro-card">
+                        <i class="fas fa-fire macro-icon"></i>
+                        <div class="macro-value">{{ plan.daily_calories }}</div>
+                        <div class="macro-label">Calories per Day</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="macro-card">
+                        <i class="fas fa-drumstick-bite macro-icon"></i>
+                        <div class="macro-value">{{ plan.protein_grams }}g</div>
+                        <div class="macro-label">Protein</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="macro-card">
+                        <i class="fas fa-bread-slice macro-icon"></i>
+                        <div class="macro-value">{{ plan.carb_grams }}g</div>
+                        <div class="macro-label">Carbohydrates</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="macro-card">
+                        <i class="fas fa-cheese macro-icon"></i>
+                        <div class="macro-value">{{ plan.fat_grams }}g</div>
+                        <div class="macro-label">Healthy Fats</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="h4 mb-4 animate__animated animate__fadeInUp animate__delay-2s">Daily Meal Plan</h2>
+        {% for meal in plan.meals %}
+        <div class="meal-card animate__animated animate__fadeInUp" style="--animate-delay: {{ loop.index * 0.2 + 0.8 }}s">
+            <div class="meal-header">
+                <span>
+                    <i class="fas {% if meal.name == 'Breakfast' %}fa-sun
+                               {% elif meal.name == 'Lunch' %}fa-cloud-sun
+                               {% elif meal.name == 'Dinner' %}fa-moon
+                               {% else %}fa-cookie{% endif %} me-2"></i>
+                    {{ meal.name }}
+                </span>
+                <span class="meal-calories">{{ meal.calories }} calories</span>
+            </div>
+            <div class="meal-body">
+                <h5 class="card-title mb-3">Recommended Foods:</h5>
+                {% for suggestion in meal.suggestions %}
+                <p class="meal-suggestion">{{ suggestion }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="d-flex justify-content-center mt-5 animate__animated animate__fadeInUp animate__delay-3s">
+            <a href="/" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Form
+            </a>
+            <button onclick="window.print()" class="btn btn-primary">
+                <i class="fas fa-print me-2"></i>Print Plan
+            </button>
+        </div>
+    </div>
+</body>
+</html>

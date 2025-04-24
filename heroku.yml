@@ -1,0 +1,8 @@
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  web: npm start
+  workout: python app.py
+  nutrition: python nutrition_app.py

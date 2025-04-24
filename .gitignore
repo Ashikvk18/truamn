@@ -34,3 +34,8 @@ Thumbs.db
 
 # Project specific
 Software Engineering project/
+software engineering project 2/
+temp-repo/
+.pytest_cache/
+.coverage
+htmlcov/

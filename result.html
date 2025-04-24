@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Workout Plan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('/static/background.png');
+      background-size: contain;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .result-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+    h2 {
+      color: #3e1d7b;
+    }
+    a {
+      text-decoration: none;
+      color: #28a745;
+      font-weight: bold;
+    }
+    iframe {
+      border-radius: 10px;
+      margin-top: 10px;
+      width: 100%;
+      height: 315px;
+    }
+    .workout-block {
+      margin-bottom: 30px;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .exercise-details {
+      margin: 15px 0;
+    }
+    .prime-exercise {
+      border: 2px solid #3e1d7b;
+      background: #f0ebf7;
+    }
+  </style>
+</head>
+<body>
+  <div class="result-container">
+    <h2>💪 Personalized Workout Plan (Age {{ age }})</h2>
+    <p><strong>Body Part:</strong> {{ body_part }}</p>
+    <p><strong>Target Muscle:</strong> {{ muscle_type }}</p>
+
+    {% for exercise in workout_plan %}
+    <div class="workout-block {% if loop.first %}prime-exercise{% endif %}">
+      <h3>{% if loop.first %}🔥 Prime Exercise{% else %}💪 Alternative Exercise{% endif %}</h3>
+      <div class="exercise-details">
+        <p><strong>{{ exercise.name }}</strong></p>
+        <p><strong>Target Muscle:</strong> {{ exercise.muscle }}</p>
+        <p><strong>Sets:</strong> {{ exercise.sets }}</p>
+        <p><strong>Reps:</strong> {{ exercise.reps }}</p>
+      </div>
+      {% if exercise.video %}
+      <iframe src="{{ exercise.video }}" 
+              frameborder="0" 
+              allowfullscreen></iframe>
+      {% else %}
+        <p style="color: gray;">No video available.</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <p><a href="/">🔁 Try Again</a></p>
+  </div>
+</body>
+</html>
