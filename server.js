@@ -36,35 +36,61 @@ if (!fs.existsSync('public')) {
 
 // Copy static files to public directory
 const copyFiles = (src, dest) => {
-    if (fs.existsSync(src)) {
-        if (!fs.existsSync(dest)) {
-            fs.mkdirSync(dest, { recursive: true });
-        }
-        const files = fs.readdirSync(src);
-        files.forEach(file => {
-            const srcPath = path.join(src, file);
-            const destPath = path.join(dest, file);
-            if (fs.statSync(srcPath).isFile()) {
-                fs.copyFileSync(srcPath, destPath);
+    try {
+        if (fs.existsSync(src)) {
+            if (!fs.existsSync(dest)) {
+                fs.mkdirSync(dest, { recursive: true });
             }
-        });
+            const files = fs.readdirSync(src);
+            files.forEach(file => {
+                try {
+                    const srcPath = path.join(src, file);
+                    const destPath = path.join(dest, file);
+                    if (fs.statSync(srcPath).isFile()) {
+                        fs.copyFileSync(srcPath, destPath);
+                        console.log(`Copied ${srcPath} to ${destPath}`);
+                    }
+                } catch (err) {
+                    console.error(`Error copying file ${file}:`, err);
+                }
+            });
+        } else {
+            console.warn(`Source directory ${src} does not exist`);
+        }
+    } catch (err) {
+        console.error(`Error processing directory ${src}:`, err);
     }
 };
 
 // Copy static assets
-copyFiles('css', path.join('public', 'css'));
-copyFiles('js', path.join('public', 'js'));
-copyFiles('images', path.join('public', 'images'));
-copyFiles('fonts', path.join('public', 'fonts'));
+const staticDirs = ['css', 'js', 'images', 'fonts'];
+staticDirs.forEach(dir => {
+    copyFiles(dir, path.join('public', dir));
+});
 
 // Copy HTML files
-fs.copyFileSync('index.html', path.join('public', 'index.html'));
-const htmlFiles = fs.readdirSync('.').filter(file => file.endsWith('.html'));
-htmlFiles.forEach(file => {
-    if (file !== 'index.html') {
-        fs.copyFileSync(file, path.join('public', file));
+try {
+    if (fs.existsSync('index.html')) {
+        fs.copyFileSync('index.html', path.join('public', 'index.html'));
+        console.log('Copied index.html to public directory');
+    } else {
+        console.error('index.html not found in root directory');
     }
-});
+
+    const htmlFiles = fs.readdirSync('.')
+        .filter(file => file.endsWith('.html') && file !== 'index.html');
+
+    htmlFiles.forEach(file => {
+        try {
+            fs.copyFileSync(file, path.join('public', file));
+            console.log(`Copied ${file} to public directory`);
+        } catch (err) {
+            console.error(`Error copying ${file}:`, err);
+        }
+    });
+} catch (err) {
+    console.error('Error copying HTML files:', err);
+}
 
 // Serve static files from public directory
 app.use(express.static('public'));
