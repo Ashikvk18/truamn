@@ -2,9 +2,14 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
+import json
+
+# Load exercise videos
+with open('exercise_videos.json', 'r') as f:
+    exercise_videos = json.load(f)
 
 # STEP 1: Load the dataset (already has Age and Age Group)
-df = pd.read_csv("Workout_Dataset_with_Age.csv")  # Using relative path
+df = pd.read_csv("Workout_Dataset_with_Age.csv")  # Using local dataset
 
 # STEP 2: Encode target workout labels for ML model
 df_cleaned = df.dropna()
@@ -55,9 +60,12 @@ def generate_precise_workout_plan(body_part, age):
     # Filter by body part
     plan_df = df[df['Body Part'].str.lower() == body_part.lower()]
     if plan_df.empty:
-        return [f"No workouts found for {body_part}"]
+        return [], None, None
 
-    workout_plan = []
+    # Get exercises for each muscle type
+    plan = []
+    recommendation = None
+    prime_video = None
 
     for muscle in plan_df['Type of Muscle'].unique():
         muscle_df = plan_df[plan_df['Type of Muscle'] == muscle]
@@ -75,8 +83,19 @@ def generate_precise_workout_plan(body_part, age):
             muscle_df['Age_Diff'] = abs(muscle_df['Age'] - age)
             best_match = muscle_df.loc[muscle_df['Age_Diff'].idxmin()]
 
-        workout_plan.append(
-            f"{best_match['Workout']} ({best_match['Type of Muscle']}) — {best_match['Sets']} sets x {best_match['Reps per Set']} reps"
-        )
+        workout = best_match['Workout']
+        video_url = exercise_videos.get(workout, '')
+        
+        exercise_text = f"{workout} - {best_match['Sets']} sets of {best_match['Reps per Set']} reps"
+        
+        # First exercise becomes the prime recommendation
+        if recommendation is None:
+            recommendation = exercise_text
+            prime_video = video_url
+        
+        plan.append({
+            'text': exercise_text,
+            'video': video_url
+        })
 
-    return workout_plan
+    return plan, recommendation, prime_video
