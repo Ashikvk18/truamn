@@ -6,6 +6,7 @@ A modern web application designed for Truman State University's Campus Recreatio
 
 - Health Calculators: Interactive BMI and BMR calculators
 - Workout Recommendations: Personalized workout suggestions
+- Nutrition Gererator: Personalized nutrition suggestions
 - AI Chatbot: Fitness-related queries answered via Claude API
 - Responsive Design: Works across all devices
 
