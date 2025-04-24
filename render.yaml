@@ -1,50 +1,19 @@
 services:
-  # Main Web Server
   - type: web
-    name: truman-rec-web
-    env: node
-    buildCommand: npm install
-    startCommand: node server.js
+    name: truman-rec-combined
+    env: python
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+      npm install
+    startCommand: |
+      python app.py & \
+      python nutrition_app.py & \
+      node server.js
     envVars:
       - key: NODE_ENV
         value: production
+      - key: FLASK_ENV
+        value: production
       - key: PORT
         value: 3000
-      - key: WORKOUT_SERVER
-        fromService:
-          name: truman-rec-workout
-          type: web
-          property: hostport
-      - key: NUTRITION_SERVER
-        fromService:
-          name: truman-rec-nutrition
-          type: web
-          property: hostport
-
-  # Workout Generator Service
-  - type: web
-    name: truman-rec-workout
-    env: python
-    buildCommand: |
-      python -m pip install --upgrade pip
-      pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    envVars:
-      - key: FLASK_ENV
-        value: production
-      - key: PORT
-        value: 10000
-
-  # Nutrition Generator Service
-  - type: web
-    name: truman-rec-nutrition
-    env: python
-    buildCommand: |
-      python -m pip install --upgrade pip
-      pip install -r requirements.txt
-    startCommand: gunicorn nutrition_app:app
-    envVars:
-      - key: FLASK_ENV
-        value: production
-      - key: PORT
-        value: 10001
