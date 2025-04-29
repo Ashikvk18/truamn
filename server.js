@@ -12,18 +12,6 @@ if (!process.env.ANTHROPIC_API_KEY) {
     process.exit(1);
 }
 
-// Start Flask applications
-const workoutApp = spawn('python', ['app.py']);
-const nutritionApp = spawn('python', ['nutrition_app.py']);
-
-workoutApp.stdout.on('data', (data) => {
-    console.log(`Workout App: ${data}`);
-});
-
-nutritionApp.stdout.on('data', (data) => {
-    console.log(`Nutrition App: ${data}`);
-});
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -92,12 +80,13 @@ try {
     console.error('Error copying HTML files:', err);
 }
 
-// Serve static files from public directory
+// Serve static files from root and public directories
 app.use(express.static('public'));
+app.use(express.static('.'));
 
 // Serve index.html for the root route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Serve other HTML files
@@ -112,9 +101,7 @@ app.get('/*.html', (req, res) => {
 });
 
 // Initialize Anthropic client
-const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY
-});
+const anthropic = new Anthropic();
 
 // Store conversation history (limit to last 10 messages per session)
 const conversations = new Map();
@@ -151,7 +138,10 @@ app.post('/api/chat', async (req, res) => {
             max_tokens: 1000,
             temperature: 0.7,
             system: 'You are a helpful assistant for the Campus Recreation Center. You can help with information about facility hours, fitness programs, equipment, and general inquiries. Be friendly, concise, and accurate in your responses. The current facility hours are: Monday-Thursday: 6:30am-10:00pm, Friday: 6:30am-7:00pm, Saturday-Sunday: 11:00am-6:00pm.',
-            messages: messages
+            messages: messages.map(msg => ({
+                role: msg.role === 'user' ? 'user' : 'assistant',
+                content: msg.content
+            }))
         });
 
         // Store the assistant's response in history
@@ -169,7 +159,7 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

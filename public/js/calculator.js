@@ -2,9 +2,7 @@ function calculateCalories() {
     // Get input values
     const age = parseInt(document.getElementById('age').value);
     const gender = document.getElementById('gender').value;
-    const weightLbs = parseFloat(document.getElementById('weight').value);
-    // Convert pounds to kilograms for calculations
-    const weight = weightLbs * 0.45359237;
+    const weight = parseFloat(document.getElementById('weight').value);
     const height = parseInt(document.getElementById('height').value);
     const activity = parseFloat(document.getElementById('activity').value);
     
@@ -26,7 +24,7 @@ function calculateCalories() {
     const totalCalories = Math.round(bmr * activity);
 
     // Calculate recommended macros
-    const protein = Math.round(weightLbs); // 1g per lb of body weight
+    const protein = Math.round(weight * 2.2); // 1g per lb of body weight
     const fat = Math.round((totalCalories * 0.25) / 9); // 25% of calories from fat
     const carbs = Math.round((totalCalories - (protein * 4) - (fat * 9)) / 4); // Remaining calories from carbs
 

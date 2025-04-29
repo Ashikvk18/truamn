@@ -2,8 +2,12 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from nutrition_generator import calculate_tdee, generate_meal_plan
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 CORS(app)
+
+@app.route('/')
+def index():
+    return render_template('nutrition.html')
 
 @app.route('/nutrition')
 def nutrition():
@@ -13,7 +17,9 @@ def nutrition():
 def generate_nutrition_plan():
     try:
         # Get form data
-        weight = float(request.form.get('weight', 0))
+        weight_lbs = float(request.form.get('weight', 0))
+        # Convert pounds to kilograms (1 lb = 0.45359237 kg)
+        weight = weight_lbs * 0.45359237
         height = float(request.form.get('height', 0))
         age = int(request.form.get('age', 0))
         gender = request.form.get('gender', '')
@@ -37,4 +43,4 @@ def generate_nutrition_plan():
         return render_template('nutrition.html', error=str(e))
 
 if __name__ == '__main__':
-    app.run(port=5001)
+    app.run(host='127.0.0.1', port=5001, debug=True)

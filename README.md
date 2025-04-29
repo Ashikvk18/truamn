@@ -43,17 +43,25 @@ A modern web application designed for Truman State University's Campus Recreatio
 
 ## Running the Application
 
-### Backend Server
+The application is split into three separate servers:
+
+### 1. Chatbot Server (Node.js)
+```bash
+npm start  # or npm run dev for development with auto-reload
+```
+Access at: http://localhost:3002
+
+### 2. Workout Server (Python/Flask)
 ```bash
 python app.py
 ```
+Access at: http://localhost:5001
 
-### Frontend Server
+### 3. Nutrition Server (Python/Flask)
 ```bash
-node server.js
+python nutrition_app.py
 ```
-
-Open `http://localhost:3000` in your browser.
+Access at: http://localhost:5002
 
 ## Pages
 

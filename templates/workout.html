@@ -98,16 +98,13 @@
 </head>
 <body>
   <div class="container">
-    {% if workout_plan %}
+    {% if plan %}
     <h2>💪 Personalized Workout Plan</h2>
     
     <div class="workout-details">
-      {% for exercise in workout_plan %}
+      {% for exercise in plan %}
       <div class="workout-block">
-        <h3>{{ exercise.name }}</h3>
-        <p><strong>Target Muscle:</strong> {{ exercise.muscle }}</p>
-        <p><strong>Sets:</strong> {{ exercise.sets }}</p>
-        <p><strong>Reps:</strong> {{ exercise.reps }}</p>
+        <p>{{ exercise.text }}</p>
         {% if exercise.video %}
         <div class="video-container">
           <iframe src="{{ exercise.video }}" allowfullscreen></iframe>
@@ -117,7 +114,10 @@
       {% endfor %}
     </div>
     
-    <p><a href="/" class="btn">🔁 Generate Another Plan</a></p>
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <a href="/" class="btn">🔁 Generate Another Plan</a>
+      <a href="http://127.0.0.1:5507/index.html" class="btn" style="background-color: #5b177f;">🏠 Back to Home</a>
+    </div>
     {% else %}
     <h2>🏋️‍♀️ Get Your Personalized Workout Plan</h2>
     {% if error %}
@@ -130,6 +130,11 @@
       <div>
         <label for="age">Age:</label>
         <input type="number" name="age" required min="15" max="80">
+      </div>
+
+      <div>
+        <label for="weight">Weight (lbs):</label>
+        <input type="number" name="weight" placeholder="Enter weight in pounds" min="66" max="440">
       </div>
 
       <div>
@@ -153,7 +158,10 @@
         </select>
       </div>
 
-      <button type="submit">Generate Workout</button>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button type="submit" style="flex: 1;">Generate Workout</button>
+        <a href="http://127.0.0.1:5507/index.html" class="btn" style="flex: 1; background-color: #5b177f; text-align: center;">🏠 Back to Home</a>
+      </div>
     </form>
     {% endif %}
   </div>

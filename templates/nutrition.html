@@ -50,20 +50,39 @@
             font-size: 16px;
         }
 
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
             width: 100%;
             margin-top: 20px;
         }
-
-        button:hover {
+        button, .btn {
+            background-color: #5b177f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+        }
+        button:hover, .btn:hover {
+            background-color: #4a1368;
+        }
+        .btn-calculate {
+            background-color: #28a745;
+        }
+        .btn-calculate:hover {
             background-color: #218838;
+        }
+        .btn-home {
+            background-color: #5b177f;
+        }
+        .btn-home:hover {
+            background-color: #4a1368;
         }
 
         .meal-plan {
@@ -164,7 +183,10 @@
                 {% endfor %}
             </div>
 
-            <button onclick="window.location.href='/nutrition'">Generate New Plan</button>
+            <div class="button-group">
+                <a href="/" class="btn btn-calculate">🔁 Generate Another Plan</a>
+                <a href="http://127.0.0.1:5507/index.html" class="btn btn-home">🏠 Back to Home</a>
+            </div>
         {% else %}
             <h2>🥗 Get Your Personalized Meal Plan</h2>
             
@@ -176,8 +198,8 @@
 
             <form action="/generate_meal_plan" method="post">
                 <div class="form-group">
-                    <label for="weight">Weight (kg):</label>
-                    <input type="number" id="weight" name="weight" required min="30" max="200">
+                    <label for="weight">Weight (lbs):</label>
+                    <input type="number" id="weight" name="weight" required min="66" max="440" placeholder="Enter weight in pounds">
                 </div>
 
                 <div class="form-group">
@@ -232,7 +254,10 @@
                     </select>
                 </div>
 
-                <button type="submit">Generate Meal Plan</button>
+                <div class="button-group">
+            <button type="submit" class="btn-calculate">Generate Meal Plan</button>
+            <a href="http://127.0.0.1:5507/index.html" class="btn btn-home">🏠 Back to Home</a>
+        </div>
             </form>
         {% endif %}
     </div>

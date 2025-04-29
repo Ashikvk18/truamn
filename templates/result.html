@@ -27,10 +27,32 @@
     h2 {
       color: #3e1d7b;
     }
-    a {
+    .btn {
       text-decoration: none;
-      color: #28a745;
+      padding: 12px 24px;
+      border-radius: 8px;
       font-weight: bold;
+      display: inline-block;
+      color: white;
+      margin: 5px;
+    }
+    .btn-green {
+      background-color: #28a745;
+    }
+    .btn-green:hover {
+      background-color: #218838;
+    }
+    .btn-purple {
+      background-color: #5b177f;
+    }
+    .btn-purple:hover {
+      background-color: #4a1368;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
     }
     iframe {
       border-radius: 10px;
@@ -83,7 +105,10 @@
       </div>
     {% endfor %}
 
-    <p><a href="/">🔁 Try Again</a></p>
+    <div class="button-group">
+      <a href="/" class="btn btn-green">🔁 Try Again</a>
+      <a href="http://127.0.0.1:5507/index.html" class="btn btn-purple">🏠 Back to Home</a>
+    </div>
   </div>
 </body>
 </html>
