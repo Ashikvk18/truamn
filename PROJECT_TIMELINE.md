@@ -6,32 +6,33 @@
 gantt
     title Truman Campus Recreation Website Development
     dateFormat YYYY-MM-DD
+    
     section Planning
-    Project Setup           :2025-02-01, 7d
-    Requirements Analysis   :2025-02-05, 10d
-    UI/UX Design           :2025-02-10, 15d
+    Project Setup :active, setup, 2025-02-01, 7d
+    Requirements Analysis :req, after setup, 10d
+    UI/UX Design :design, after req, 15d
 
     section Development
-    Basic Structure        :2025-02-20, 13d
-    BMI Calculator        :2025-02-25, 13d
-    BMR Calculator        :2025-03-01, 14d
-    Workout Generator     :2025-03-10, 15d
-    Meal Plan Generator   :2025-03-15, 15d
-    AI Chatbot Integration:2025-03-20, 16d
+    Basic Structure :struct, after design, 13d
+    BMI Calculator :bmi, after struct, 13d
+    BMR Calculator :bmr, after bmi, 14d
+    Workout Generator :workout, after bmr, 15d
+    Meal Plan Generator :meal, after workout, 15d
+    AI Chatbot :chat, after meal, 16d
 
     section Testing
-    Unit Testing          :2025-03-25, 16d
-    Integration Testing   :2025-04-01, 14d
-    User Testing         :2025-04-10, 10d
+    Unit Testing :unit, after chat, 16d
+    Integration Testing :int, after unit, 14d
+    User Testing :user, after int, 10d
 
     section Documentation
-    API Documentation    :2025-04-15, 7d
-    User Guide          :2025-04-18, 7d
-    Developer Guide     :2025-04-20, 8d
-    
+    API Documentation :api, after user, 7d
+    User Guide :guide, after api, 7d
+    Developer Guide :dev, after guide, 8d
+
     section Deployment
-    Final Testing       :2025-04-25, 3d
-    Production Deploy   :2025-04-28, 2d
+    Final Testing :final, after dev, 3d
+    Production Deploy :prod, after final, 2d
 ```
 
 ## Project Phases Breakdown

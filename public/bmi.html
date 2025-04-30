@@ -33,17 +33,37 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        button {
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+        }
+        button, .btn {
             background-color: #5b177f;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            width: 100%;
             font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
         }
-        button:hover {
+        button:hover, .btn:hover {
+            background-color: #4a1368;
+        }
+        .btn-calculate {
+            background-color: #28a745;
+        }
+        .btn-calculate:hover {
+            background-color: #218838;
+        }
+        .btn-home {
+            background-color: #5b177f;
+        }
+        .btn-home:hover {
             background-color: #4a1368;
         }
         #result {
@@ -70,20 +90,25 @@
     <div class="calculator-container">
         <h2>BMI Calculator</h2>
         <div class="form-group">
-            <label for="weight">Weight (kg):</label>
-            <input type="number" id="weight" step="0.1" required>
+            <label for="weight">Weight (lbs):</label>
+            <input type="number" id="weight" step="0.1" required min="66" max="440" placeholder="Enter weight in pounds">
         </div>
         <div class="form-group">
             <label for="height">Height (cm):</label>
             <input type="number" id="height" step="0.1" required>
         </div>
-        <button onclick="calculateBMI()">Calculate BMI</button>
+        <div class="button-group">
+            <button onclick="calculateBMI()" class="btn-calculate">Calculate BMI</button>
+            <a href="http://127.0.0.1:5507/index.html" class="btn btn-home">🏠 Back to Home</a>
+        </div>
         <div id="result"></div>
     </div>
 
     <script>
         function calculateBMI() {
-            const weight = parseFloat(document.getElementById('weight').value);
+            const weightLbs = parseFloat(document.getElementById('weight').value);
+            // Convert pounds to kilograms for BMI calculation
+            const weight = weightLbs * 0.45359237;
             const height = parseFloat(document.getElementById('height').value) / 100; // convert cm to m
 
             if (!weight || !height || weight <= 0 || height <= 0) {
