@@ -5,34 +5,33 @@
 ```mermaid
 gantt
     title Truman Campus Recreation Website Development
-    dateFormat  YYYY-MM-DD
+    dateFormat YYYY-MM-DD
     section Planning
-    Project Setup           :2025-02-01, 2025-02-07
-    Requirements Analysis   :2025-02-05, 2025-02-15
-    UI/UX Design           :2025-02-10, 2025-02-25
+    Project Setup           :2025-02-01, 7d
+    Requirements Analysis   :2025-02-05, 10d
+    UI/UX Design           :2025-02-10, 15d
 
     section Development
-    Basic Structure        :2025-02-20, 2025-03-05
-    BMI Calculator        :2025-02-25, 2025-03-10
-    BMR Calculator        :2025-03-01, 2025-03-15
-    Workout Generator     :2025-03-10, 2025-03-25
-    Meal Plan Generator   :2025-03-15, 2025-03-30
-    AI Chatbot Integration:2025-03-20, 2025-04-05
+    Basic Structure        :2025-02-20, 13d
+    BMI Calculator        :2025-02-25, 13d
+    BMR Calculator        :2025-03-01, 14d
+    Workout Generator     :2025-03-10, 15d
+    Meal Plan Generator   :2025-03-15, 15d
+    AI Chatbot Integration:2025-03-20, 16d
 
     section Testing
-    Unit Testing          :2025-03-25, 2025-04-10
-    Integration Testing   :2025-04-01, 2025-04-15
-    User Testing         :2025-04-10, 2025-04-20
+    Unit Testing          :2025-03-25, 16d
+    Integration Testing   :2025-04-01, 14d
+    User Testing         :2025-04-10, 10d
 
     section Documentation
-    API Documentation    :2025-04-15, 2025-04-22
-    User Guide          :2025-04-18, 2025-04-25
-    Developer Guide     :2025-04-20, 2025-04-28
+    API Documentation    :2025-04-15, 7d
+    User Guide          :2025-04-18, 7d
+    Developer Guide     :2025-04-20, 8d
     
     section Deployment
-    Final Testing       :2025-04-25, 2025-04-28
-    Production Deploy   :2025-04-28, 2025-04-30
-
+    Final Testing       :2025-04-25, 3d
+    Production Deploy   :2025-04-28, 2d
 ```
 
 ## Project Phases Breakdown
