@@ -1,16 +1,25 @@
-# Truman Campus Recreation Website
+# 🏋️‍♂️ Truman Campus Recreation Website
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
+[![Flask](https://img.shields.io/badge/Flask-2.0+-lightgrey.svg)](https://flask.palletsprojects.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-14.0+-green.svg)](https://nodejs.org/)
+[![Deployment](https://img.shields.io/badge/Deploy-Render-purple)](https://render.com)
 
 A modern web application designed for Truman State University's Campus Recreation Center. It provides students and staff with interactive health tools, including BMI and BMR calculators, workout recommendations, and a chatbot assistant powered by Anthropic's Claude API.
 
-## Features
+## ✨ Features
 
-- Health Calculators: Interactive BMI and BMR calculators
-- Workout Recommendations: Personalized workout suggestions
-- Nutrition Gererator: Personalized nutrition suggestions
-- AI Chatbot: Fitness-related queries answered via Claude API
-- Responsive Design: Works across all devices
+- 🧮 **Health Calculators**: Interactive BMI and BMR calculators
+- 💪 **Workout Recommendations**: Personalized workout suggestions based on age and preferences
+- 🥗 **Nutrition Generator**: Custom meal plans with calorie and macro tracking
+- 🤖 **AI Chatbot**: Intelligent fitness assistant powered by Claude API
+- 📱 **Responsive Design**: Seamless experience across all devices
+- 🏠 **Easy Navigation**: Consistent "Back to Home" functionality across all tools
+- 🎨 **Modern UI**: Clean, intuitive interface with consistent styling
+- 🔄 **Real-time Calculations**: Instant results for all health metrics
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -41,7 +50,7 @@ A modern web application designed for Truman State University's Campus Recreatio
 4. Configure environment variables:
    - Rename `.env.example` to `.env` and add your settings.
 
-## Running the Application
+## 🔧 Running the Application
 
 The application is split into three separate servers:
 
@@ -63,14 +72,14 @@ python nutrition_app.py
 ```
 Access at: http://localhost:5002
 
-## Pages
+## 📑 Pages
 
 - `/bmi.html`: BMI calculator
 - `/bmr.html`: BMR calculator
 - `/calculator.html`: Workout recommendation
 - Homepage: Fitness chatbot
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 truamn/
@@ -90,18 +99,18 @@ truamn/
 └── README.md
 ```
 
-## Deployment
+## 🌐 Deployment
 
 Deploy with Render using the `render.yaml` configuration.
 
-## Contributing
+## 👥 Contributing
 
 Fork the repo and open a pull request. Open an issue to discuss major changes.
 
-## License
+## 📄 License
 
 MIT License
 
-## Contact
+## 📬 Contact
 
 Open an issue at: https://github.com/Ashikvk18/truamn/issues
