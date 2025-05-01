@@ -1,116 +1,148 @@
-# 🏋️‍♂️ Truman Campus Recreation Website
+<div align="center">
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
-[![Flask](https://img.shields.io/badge/Flask-2.0+-lightgrey.svg)](https://flask.palletsprojects.com/)
+<img src="images/logo.svg" alt="Truman State Recreation" width="300"/>
+
+# 🏋️‍♂️ Truman Campus Recreation Center 🏃‍♀️
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Ashikvk18/truamn/blob/main/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Ashikvk18/truamn/pulls)
+[![Made with Firebase](https://img.shields.io/badge/Made%20with-Firebase-FFCA28?style=flat&logo=firebase)](https://firebase.google.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-14.0+-green.svg)](https://nodejs.org/)
-[![Deployment](https://img.shields.io/badge/Deploy-Render-purple)](https://render.com)
 
-A modern web application designed for Truman State University's Campus Recreation Center. It provides students and staff with interactive health tools, including BMI and BMR calculators, workout recommendations, and a chatbot assistant powered by Anthropic's Claude API.
+*A modern web platform for Truman State University's Recreation Center, featuring real-time equipment tracking and staff management.*
+
+[Features](#features) • [Live Demo](#live-demo) • [Tech Stack](#tech-stack) • [Contributing](#contributing)
+
+</div>
+
+---
 
 ## ✨ Features
 
-- 🧮 **Health Calculators**: Interactive BMI and BMR calculators
-- 💪 **Workout Recommendations**: Personalized workout suggestions based on age and preferences
-- 🥗 **Nutrition Generator**: Custom meal plans with calorie and macro tracking
-- 🤖 **AI Chatbot**: Intelligent fitness assistant powered by Claude API
-- 📱 **Responsive Design**: Seamless experience across all devices
-- 🏠 **Easy Navigation**: Consistent "Back to Home" functionality across all tools
-- 🎨 **Modern UI**: Clean, intuitive interface with consistent styling
-- 🔄 **Real-time Calculations**: Instant results for all health metrics
+🎯 **Real-time Equipment Status**
+- Live tracking of gym equipment availability
+- Staff dashboard for instant updates
+- Equipment categorization and filtering
+- Historical status tracking
+
+🔐 **Secure Staff Portal**
+- Firebase Authentication integration
+- Role-based access control
+- Secure data transmission
+- Session management
+
+🎨 **Modern UI/UX**
+- Truman State's signature purple theme
+- Responsive design for all devices
+- Intuitive navigation system
+- Smooth animations and transitions
+
+📊 **Fitness Tools**
+- BMI Calculator with health insights
+- Workout tracking capabilities
+- Progress visualization
+- Personalized recommendations
 
 ## 🚀 Getting Started
 
-### Prerequisites
+## 🚀 Quick Start
 
-- Node.js (v14 or higher)
-- Python (v3.8 or higher)
-- npm
-
-### Installation
-
-1. Clone the repository:
+1. **Clone and Install**
    ```bash
+   # Clone the repository
    git clone https://github.com/Ashikvk18/truamn.git
    cd truamn
-   ```
 
-2. Install Node.js dependencies:
-   ```bash
+   # Install dependencies
    npm install
    ```
 
-3. Set up Python environment:
+2. **Configure Firebase**
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   pip install -r requirements.txt
+   # Copy the example env file
+   cp .env.example .env
+
+   # Add your Firebase configuration
+   # Edit .env with your Firebase credentials
    ```
 
-4. Configure environment variables:
-   - Rename `.env.example` to `.env` and add your settings.
+3. **Start Development Server**
+   ```bash
+   npm start
+   ```
 
-## 🔧 Running the Application
+   Visit `http://localhost:4001` to view the application.
 
-The application is split into three separate servers:
+## 🛠 Tech Stack
 
-### 1. Chatbot Server (Node.js)
-```bash
-npm start  # or npm run dev for development with auto-reload
-```
-Access at: http://localhost:3002
+- **Frontend**
+  - HTML5, CSS3, JavaScript
+  - Bootstrap 5
+  - Custom animations
 
-### 2. Workout Server (Python/Flask)
-```bash
-python app.py
-```
-Access at: http://localhost:5001
+- **Backend**
+  - Firebase Realtime Database
+  - Firebase Authentication
+  - Node.js server
 
-### 3. Nutrition Server (Python/Flask)
-```bash
-python nutrition_app.py
-```
-Access at: http://localhost:5002
+- **Development**
+  - Git workflow
+  - ESLint
+  - Prettier
 
-## 📑 Pages
+## 📑 Key Pages
 
+- `/`: Homepage with equipment status
+- `/worker/login.html`: Staff login portal
+- `/worker/dashboard.html`: Equipment management
 - `/bmi.html`: BMI calculator
-- `/bmr.html`: BMR calculator
-- `/calculator.html`: Workout recommendation
-- Homepage: Fitness chatbot
 
 ## 📂 Project Structure
 
-```
-truamn/
-├── app.py
-├── server.js
-├── requirements.txt
-├── package.json
-├── .env.example
-├── templates/
-├── static/
-│   ├── css/
-│   ├── js/
-│   ├── images/
-│   └── fonts/
-├── Workout_Dataset_with_Age.csv
-├── exercise_videos.json
-└── README.md
+```bash
+rec-website/
+├── public/           # Static assets
+│   ├── images/      # Images and icons
+│   ├── css/         # Stylesheets
+│   └── js/          # Client-side scripts
+├── worker/          # Staff portal
+│   ├── login.html   # Authentication page
+│   └── dashboard.html# Equipment management
+├── js/              # Core JavaScript modules
+│   ├── firebase-config.js
+│   ├── worker-auth.js
+│   └── dashboard.js
+└── package.json     # Dependencies
 ```
 
-## 🌐 Deployment
+## 📖 Documentation
 
-Deploy with Render using the `render.yaml` configuration.
+- [Git Workflow Visualization](docs/git-workflow-viewer.html) - Interactive visualization of our Git workflow
+- [Git Setup Guide](GIT_SETUP.md) - Guide for setting up Git
+- [Project Timeline](PROJECT_TIMELINE.md) - Development timeline and milestones
 
-## 👥 Contributing
+## 🤝 Contributing
 
-Fork the repo and open a pull request. Open an issue to discuss major changes.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📬 Contact
+## 🙏 Acknowledgments
 
-Open an issue at: https://github.com/Ashikvk18/truamn/issues
+- Truman State University Recreation Center Staff
+- Firebase Team for their excellent documentation
+- All contributors who help improve this platform
+
+---
+
+<div align="center">
+
+Made with 💜 for Truman State University
+
+</div>
